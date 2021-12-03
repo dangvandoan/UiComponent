@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="AHTUI\BurningLog\Model\ResourceModel\Post\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">burninglog</argument>
+			<argument name="resourceModel" xsi:type="string">AHTUI\BurningLog\Model\ResourceModel\Post\Collection</argument>
+		</arguments>
+	</virtualType>
+	<!-- UI Component -->
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="burninglog_post_listing_data_source" xsi:type="string">AHTUI\BurningLog\Model\ResourceModel\Post\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+   <!-- Upload IMG -->
+	<type name="AHTUI\BurningLog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">ahtui/tmp/post</argument>
+            <argument name="basePath" xsi:type="string">ahtui/post</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="gif" xsi:type="string">gif</item>
+            </argument>
+        </arguments>
+    </type>
+
+	  <!-- Plugin -->
+     <type name="Magento\Catalog\Model\Product">
+        <plugin name="cache_price1" type="AHTUI\BurningLog\Plugin\Product1" sortOrder="10" />
+    </type>
+
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="cache_price2" type="AHTUI\BurningLog\Plugin\Product2" sortOrder="20" />
+    </type>
+
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="cache_price3" type="AHTUI\BurningLog\Plugin\Product3" sortOrder="30" />
+    </type>
+
+	<type name="AHTUI\BurningLog\Controller\Adminhtml\Post\Index">
+        <plugin name="cache_price4" type="AHTUI\BurningLog\Plugin\Tong" sortOrder="30" />
+    </type>
+</config>
